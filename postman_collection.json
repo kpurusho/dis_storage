@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "ae1fedbd-6d3a-4536-a5e2-7b23209ac32a",
+		"name": "Milestone#1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "upload a file",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/Users/prsubrama/OneDrive - KLA Corporation/Documents/Praveen/PrivateFoundry/milestone-1/Test/TestData/test_file_1.txt"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:5000/files"
+			},
+			"response": [
+				{
+					"name": "Upload File",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/Users/prsubrama/OneDrive - KLA Corporation/Documents/Praveen/PrivateFoundry/milestone-1/Test/TestData/test_file_1.txt"
+								}
+							]
+						},
+						"url": "http://prsubrama-lt:5000/files"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "36"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.3 Python/3.7.3"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 28 Jan 2020 13:25:43 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "af7e806e-41d1-11ea-8d67-a4c3f0b4a801"
+				}
+			]
+		},
+		{
+			"name": "Retrieve a file",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:5000/files/af7e806e-41d1-11ea-8d67-a4c3f0b4a801"
+			},
+			"response": [
+				{
+					"name": "Retrieve a file",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "http://prsubrama-lt:5000/files/af7e806e-41d1-11ea-8d67-a4c3f0b4a801"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Disposition",
+							"value": "attachment; filename=test_file_1.txt"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Last-Modified",
+							"value": "Tue, 28 Jan 2020 13:26:22 GMT"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "public, max-age=43200"
+						},
+						{
+							"key": "Expires",
+							"value": "Wed, 29 Jan 2020 01:26:22 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "\"1580217982.37188-48-68889635\""
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.3 Python/3.7.3"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 28 Jan 2020 13:26:22 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "this is a test file\r\ndata in here is for test \r\n"
+				}
+			]
+		},
+		{
+			"name": "List the available files",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:5000/files/list"
+			},
+			"response": [
+				{
+					"name": "List the available files ",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "http://PRSUBRAMA-LT:5000/files/list"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "78"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.3 Python/3.7.3"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 28 Jan 2020 13:26:46 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"file_name\": \"test_file_1.txt\",\n        \"id\": \"af7e806e-41d1-11ea-8d67-a4c3f0b4a801\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Delete a File",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://127.0.0.1:5000/files/de4d7dec-264b-11ea-bbbd-a4c3f0b4a801"
+			},
+			"response": [
+				{
+					"name": "Delete a File",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://prsubrama-lt:5000/files/af7e806e-41d1-11ea-8d67-a4c3f0b4a801"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.3 Python/3.7.3"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 28 Jan 2020 13:26:59 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "object test_file_1.txt deleted successfully"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}

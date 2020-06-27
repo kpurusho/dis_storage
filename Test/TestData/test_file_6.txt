@@ -1,0 +1,81 @@
+this is a test file
+data in here is for test 
+wertyuiosdfghjkllxcvbnm,.dfghjkl;''
+
+import pytest
+import transactions as txn
+from objectifier import Objectifier
+import json
+from filehash import FileHash
+
+config = Objectifier(json.load(open('Test/testconfig.json')))
+
+class TestMilestone1():
+
+    #envsetup
+    def test_one(self):
+        """
+            Delete all the files on the server
+        """
+        files = txn.list_available_files().json()
+        for items in files:
+            rs = txn.delete_a_file_by_id(items['id'])
+            assert(rs.status_code==200)
+
+    # Verify that when there are no files, the list call displays no results
+    def test_two(self):
+        """
+        Verify that the list Files returns no files when there are no files to be displayed
+        """
+        response = txn.list_available_files().json()
+        assert(response.__len__()==0)
+    
+
+    # Verify that a file can be uploaded successfully 
+    def test_three(self):
+        """
+        Verify that the a file an be uploaded successfully
+        """
+        response = txn.upload_a_file(config.TEST_DATA.test_three.file_to_upload)
+        assert(response.status_code==200)
+
+
+    # Verify that the uploaded file can be reterived sucessfully - Verify check sum
+    def test_four(self):
+        """
+        Verify that the uploaded file can be reterived sucessfully - Verify check sum before upload and after reterive
+        """
+        md5= FileHash('sha1')
+        hash = md5.hash_file(config.TEST_DATA.test_four.file_to_upload)
+        response = txn.upload_a_file(config.TEST_DATA.test_four.file_to_upload)
+        assert(response.status_code==200)
+        id = response.content
+        r = txn.retrive_a_file_by_id(id)       
+        open('test_file_2.txt', 'wb+').write(r.content)
+        hash_2 = md5.hash_file('test_file_2.txt')
+        assert(hash==hash_2)
+
+    # Verify that when there are files , the list call displays the files correctly 
+    def test_five(self):
+        """
+        Verify that when there are files , the list call displays the files correctly 
+        """
+        count = txn.list_available_files().json()
+        assert(count.__len__()>0)
+
+    # Verify that a delete operation happens successfully
+    def test_six(self):
+        """
+        Verify that a delete operation happens successfully
+        """
+        
+
+    # Verify that the deleted file is not displayed on the list call after deletion 
+    # Verify that the deleted file cannot be reterived
+    # Verify that appopriate error message is displayed while trying to access a file that doesnt exist
+    # Verify that a file can be retrived by name
+    # Verify that a file can be reterived by id
+    # Verify that a file can be deleted by name
+    # Verify that a file can be deleted by ID
+    # Verify that files of various names are accepted during upload
+    #Verify that we are able to delete all the files displayed
